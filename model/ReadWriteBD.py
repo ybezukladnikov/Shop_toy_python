@@ -1,6 +1,7 @@
 import pymysql
 
 from config import host, user, password, db_name
+from model.Exception import ExceptionReqDB, ExceptionConnectToDB
 
 
 class ReadWriteBD:
@@ -14,8 +15,6 @@ class ReadWriteBD:
                 database=db_name,
                 cursorclass=pymysql.cursors.DictCursor
             )
-            print("successfully connected...")
-            print("#" * 20)
             data = []
             try:
                 with connection.cursor() as cursor:
@@ -24,15 +23,18 @@ class ReadWriteBD:
                     rows = cursor.fetchall()
                     for row in rows:
                         data.append([row['id'], row['title_toy'], row['amount'], row['frequency']])
-
-
-                    print("#" * 20)
-                    return data
+            except Exception:
+                raise ExceptionReqDB()
 
             finally:
                 connection.close()
+            return data
+        except ExceptionReqDB:
+            print(ExceptionReqDB.description)
+            exit()
+        except Exception:
+            raise ExceptionConnectToDB("Error connecting to the database")
 
-        except Exception as ex:
-            print("Connection refused...")
-            print(ex)
+
+
 

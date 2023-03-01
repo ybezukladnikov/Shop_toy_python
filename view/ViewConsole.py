@@ -4,12 +4,15 @@ class ViewConsole:
     def show_toys_in_shop(self, data):
         mytable = PrettyTable()
         # имена полей таблицы
-        mytable.field_names = ["ID", "Имя заметки", "Краткое содержание заметки", "Дата создания",
-                               "Дата последнего изменения"]
+        mytable.field_names = ["ID", "Название игрушки", "Количество", "Частота выпадения"]
         # добавление данных по одной строке за раз
-        for row in data:
-            mytable.add_row([row[0], row[1], row[2], row[3]])
+        if len(data) == 0:
+            print("В базе нет игрушек")
+        else:
+            for row in data:
+                mytable.add_row([row[0], row[1], row[2], row[3]])
 
-        # вывод таблицы в терминал
         print(mytable)
+
+
 
