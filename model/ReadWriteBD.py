@@ -35,6 +35,38 @@ class ReadWriteBD:
         except Exception:
             raise ExceptionConnectToDB("Error connecting to the database")
 
+    def write_bd(self, array):
+        try:
+            connection = pymysql.connect(
+                host=host,
+                port=3306,
+                user=user,
+                password=password,
+                database=db_name,
+                cursorclass=pymysql.cursors.DictCursor
+            )
+
+            try:
+                with connection.cursor() as cursor:
+                    insert_query = f"INSERT INTO `toys_in_shop` (title_toy, amount, frequency) " \
+                                   f"VALUES ('{array[0]}', '{array[1]}', '{array[2]}');"
+                    cursor.execute(insert_query)
+                    connection.commit()
+            except Exception:
+                raise ExceptionReqDB()
+
+            finally:
+                connection.close()
+
+        except ExceptionReqDB:
+            print(ExceptionReqDB.description)
+            exit()
+        except Exception:
+            raise ExceptionConnectToDB("Error connecting to the database")
+
+
+
+
 
 
 

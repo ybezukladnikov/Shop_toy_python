@@ -1,4 +1,7 @@
 from prettytable import PrettyTable
+from colorama import init, Fore, Back
+
+init(autoreset=True)
 
 class ViewConsole:
     def show_toys_in_shop(self, data):
@@ -13,6 +16,20 @@ class ViewConsole:
                 mytable.add_row([row[0], row[1], row[2], row[3]])
 
         print(mytable)
+
+    def input_console(self,text):
+        input_text = input(Fore.CYAN + text)
+        return input_text
+
+    def output_console(self, text, flag):
+        if flag:
+            print(Back.GREEN + Fore.BLACK + text)
+        else:
+            print(Back.RED + Fore.BLACK + text)
+
+
+
+
 
 
 

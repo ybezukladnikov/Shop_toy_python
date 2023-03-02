@@ -3,8 +3,6 @@ from model.Shop import Shop
 from model.Menu import Menu
 class Presenter:
     def run(self):
-        # my_shop = Shop()
-
         while True:
             menu_item = Menu().show_menu()
             match menu_item:
@@ -15,7 +13,8 @@ class Presenter:
                           f"Есть слудующие игрушки: ")
                     ViewConsole().show_toys_in_shop(Shop().list_toy)
 
-                # case 2:
+                case 2:
+                    Shop().add_toy_inDB()
 
 
 
