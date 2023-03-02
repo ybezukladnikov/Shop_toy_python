@@ -1,5 +1,7 @@
+from model.Menu import Menu
 from prettytable import PrettyTable
 from colorama import init, Fore, Back
+
 
 init(autoreset=True)
 
@@ -10,12 +12,18 @@ class ViewConsole:
         mytable.field_names = ["ID", "Название игрушки", "Количество", "Частота выпадения"]
         # добавление данных по одной строке за раз
         if len(data) == 0:
-            print("В базе нет игрушек")
+            self.output_console("В базе нет игрушек", False)
         else:
             for row in data:
                 mytable.add_row([row[0], row[1], row[2], row[3]])
+            self.output_console("В базе есть следующие игрушки:", True)
+            print(mytable)
 
-        print(mytable)
+    def show_main_menu(self):
+        # print('Магазин игрушек')
+        for operNum, operDesc in Menu().MENU_ITEMS.items():
+            print(f"{operNum}. {operDesc}")
+
 
     def input_console(self,text):
         input_text = input(Fore.CYAN + text)
