@@ -1,21 +1,30 @@
 from view.ViewConsole import ViewConsole
 from model.Shop import Shop
-# from model.Menu import Menu
 from model.Check import Check
 class Presenter:
     view = ViewConsole()
+    shop = Shop()
     def run(self):
         while True:
             self.view.output_console(f"Магазин игрушек {Shop().name}",True)
-            ViewConsole().show_main_menu()
+            self.view.show_main_menu()
             menu_item = Check().check_main_menu()
             match menu_item:
                 case 0:
                     break
                 case 1:
-                    ViewConsole().show_toys_in_shop(Shop().list_toy)
+                    self.shop.get_list_toy()
+                    self.view.show_toys_in_shop(self.shop.list_toy)
                 case 2:
-                    Shop().add_toy_inDB()
+                    self.shop.add_toy_inDB()
+                case 3:
+                    self.shop.get_list_for_issue()
+                    self.view.show_list_for_issue(self.shop.list_for_issue)
+                case 4:
+                    self.shop.give_toy()
+
+
+
 
 
 
