@@ -1,3 +1,4 @@
+from model.ReadWriteBD import ReadWriteBD
 from view.ViewConsole import ViewConsole
 
 
@@ -20,9 +21,18 @@ class Check:
     def check_name_toy(self):
         while True:
             name = self.my_view.input_console('Введите название игрушки (до 15 символов): ')
+
             if len(name)>15 or len(name)==0:
                 self.my_view.output_console('Неверная длина названия', False)
                 continue
+            flag = False
+            for row in ReadWriteBD().read_write_bd("SELECT * FROM `toys_in_shop`", 'r'):
+                if name == row['title_toy']:
+                    flag = True
+            if flag:
+                self.my_view.output_console('Такое имя уже есть в базе', False)
+                continue
+
             break
         return name
 
@@ -30,7 +40,7 @@ class Check:
         while True:
             try:
                 num = int(self.my_view.input_console('Введите количество игрушек: '))
-                if num > 0:
+                if num >= 0:
                     break
                 else:
                     self.my_view.output_console('Число не может быть отрицательным', False)

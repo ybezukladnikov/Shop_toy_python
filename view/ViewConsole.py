@@ -30,6 +30,17 @@ class ViewConsole:
             self.output_console("Игрушки к выдаче:", True)
             print(mytable)
 
+    def show_list_toy_issued(self, data):
+        mytable = PrettyTable()
+        mytable.field_names = ["ID", "Название игрушки", "Дата выигрыша", "Дата выдачи"]
+        if len(data) == 0:
+            self.output_console("Все игрушки выданы", False)
+        else:
+            for num, row in enumerate(data):
+                mytable.add_row([num+1, row['title_toy'], row['date_of_winning'], row['date_issue']])
+            self.output_console("Список выданных игрушек:", True)
+            print(mytable)
+
 
 
     def show_main_menu(self):

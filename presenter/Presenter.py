@@ -22,6 +22,16 @@ class Presenter:
                     self.view.show_list_for_issue(self.shop.list_for_issue)
                 case 4:
                     self.shop.give_toy()
+                case 5:
+                    self.shop.play_toy()
+                case 6:
+                    self.shop.get_list_toy_issued()
+                    self.view.show_list_toy_issued(self.shop.list_toy_issued)
+
+
+
+
+
 
 
 
