@@ -81,4 +81,15 @@ class Shop:
                                                               "FROM `toys_for_delivery`"
                                                               "WHERE toy_issued = 1", 'r')
 
+    def change_frequency_toy(self):
+        self.get_list_toy()
+        self.view.show_toys_in_shop(self.list_toy)
+        number_toy = Check().check_number_toy(self.list_toy)
+        new_frequency = Check().check_frequency_toy()
+        self.ReadWriteBD.read_write_bd(f"UPDATE `toys_in_shop` "
+                                       f"SET frequency = '{new_frequency}'"
+                                       f"WHERE id = '{number_toy}';", 'w')
+
+
+
 

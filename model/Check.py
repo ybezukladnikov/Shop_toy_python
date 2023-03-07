@@ -8,7 +8,7 @@ class Check:
         while True:
             try:
                 num = int(self.my_view.input_console('Введите номер пункта, который хотите выполнить: '))
-                if 0 <= num <= 6:
+                if 0 <= num <= 7:
                     break
                 else:
                     self.my_view.output_console('Такого пункта меню нет! Попробуйте снова.', False)
@@ -58,6 +58,21 @@ class Check:
                     break
                 else:
                     self.my_view.output_console('Число должно быть в диапозоне от 0 до 100', False)
+                    continue
+            except ValueError:
+                self.my_view.output_console('Вы ввели некорректное число! Попробуйте снова.', False)
+
+        return num
+
+    def check_number_toy(self, data):
+        count_toy = len(data)
+        while True:
+            try:
+                num = int(self.my_view.input_console('Введите номер игрушки для изменения частоты: '))
+                if 0< num <= count_toy:
+                    break
+                else:
+                    self.my_view.output_console('Игрушка с таким номером отсутствует', False)
                     continue
             except ValueError:
                 self.my_view.output_console('Вы ввели некорректное число! Попробуйте снова.', False)

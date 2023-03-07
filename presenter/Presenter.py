@@ -27,24 +27,9 @@ class Presenter:
                 case 6:
                     self.shop.get_list_toy_issued()
                     self.view.show_list_toy_issued(self.shop.list_toy_issued)
+                case 7:
+                    self.shop.change_frequency_toy()
 
 
-
-
-
-
-
-
-
-
-
-                # case 2:
-                #     CRUD.create_note(check.check_new_note())
-                # case 3:
-                #     CRUD.view_ch_del()
-                # case 4:
-                #     exp_imp.export()
-                # case 5:
-                #     exp_imp.import_file()
 
 
